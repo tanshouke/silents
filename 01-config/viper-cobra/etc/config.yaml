@@ -1,0 +1,9 @@
+# System Configuration
+system:
+  env: develop  # develop | staging | production
+  addr: 8888    # Port to listen on
+  db-type: mysql
+
+test:
+  id: 1
+  msg: "test msg ~ "

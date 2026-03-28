@@ -1,0 +1,79 @@
+# System Configuration
+system:
+  env: develop  # develop | staging | production
+  addr: 8888    # Port to listen on
+  db-type: mysql
+
+# MySQL Database Configuration
+# For local development with Podman Compose, use these defaults:
+# - Host: 172.16.50.170 or 172.16.50.170
+# - Port: 3306
+# - Database: enterprise_web_platform
+# - User: ewp / Password: ewp123
+mysql:
+  host: 172.16.50.170     # MySQL 端口转发到本地
+  port: 3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: test
+  username: root       # Use root for development
+  password: 123456    # Root password from compose.yaml
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: dev  # dev | prod
+  log-zap: false
+
+# Redis Configuration
+redis:
+  addr: 172.16.50.170:6380
+  password: "123456"  # Use environment variable REDIS_PASSWORD in production
+  db: 0
+  pool-size: 10
+
+# JWT Configuration
+jwt:
+  signing-key: "enterprise-web-platform-dev-secret-key-change-in-production-12345"  # Use environment variable JWT_SECRET in production (min 32 chars)
+  expires-time: 604800  # Token expiration in seconds (7 days)
+  buffer-time: 86400    # Refresh buffer time (1 day)
+  issuer: enterprise-web-platform
+
+# Zap Logging Configuration
+zap:
+  level: debug  # debug | info | warn | error
+  format: console  # console | json
+  prefix: '[EWP]'
+  director: logs
+  show-line: true
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  log-in-console: true
+
+# CORS Configuration
+cors:
+  mode: allow-all  # allow-all | whitelist
+  whitelist:
+    - http://172.16.50.170:5173  # Frontend dev server
+    - http://172.16.50.170:8080
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  metrics:
+    enabled: true
+    path: /metrics
+    auth:
+      enabled: false  # Enable in production
+      username: metrics
+      password: ""  # Use environment variable METRICS_PASSWORD
+
+# gRPC Configuration (Future)
+grpc:
+  enabled: false
+  port: 9090
+  tls:
+    enabled: false
+    cert: ""
+    key: ""
+
+# Casbin RBAC Configuration
+casbin:
+  model-path: config/rbac_model.conf
