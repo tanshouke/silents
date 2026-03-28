@@ -39,7 +39,7 @@ jwt:
 # Zap Logging Configuration
 zap:
   level: debug  # debug | info | warn | error
-  format: console  # console | json
+  format: json  # console | json
   prefix: '[EWP]'
   director: logs
   show-line: true
