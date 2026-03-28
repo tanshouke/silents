@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/tanshouke/silents/01-config/viper-cobra/initialize"
 )
 
 func Execute() error {
