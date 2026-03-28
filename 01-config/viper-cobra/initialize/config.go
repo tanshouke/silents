@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"github.com/tanshouke/silents/01-config/viper/global"
+	"github.com/tanshouke/silents/01-config/viper-cobra/global"
 )
 
 /*

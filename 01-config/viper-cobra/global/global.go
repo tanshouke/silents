@@ -10,7 +10,7 @@ import (
 */
 var (
 	Cfg Config
-	VP  viper.Viper
+	VP  *viper.Viper
 )
 
 /*

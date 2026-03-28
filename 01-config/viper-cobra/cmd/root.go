@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 func Execute() error {
@@ -11,30 +10,19 @@ func Execute() error {
 }
 
 var (
-	// Used for flags.
 	CfgFile string
 	RootCmd = &cobra.Command{
-		Use:   "cobra-cli",
-		Short: "f",
-		Long:  `config`,
+		Use:   "cli",
+		Short: "r",
+		Long:  `long msg `,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			/* cli载入配置 */
-			v := viper.New()
-			v.SetConfigType("yaml")
-			v = setConfigFileByCmd(v)
-
-			/* 配置初始化 */
-			initialize.InitConfig(v)
+			fmt.Println("root cli test , CfgFile: ", CfgFile)
 			return nil
 		},
 	}
 )
 
-func setConfigFileByCmd(v *viper.Viper) *viper.Viper {
-	fmt.Println("setConfigFileByCmd：", CfgFile)
-	v.SetConfigFile(CfgFile)
-	return v
-}
 func init() {
-	RootCmd.PersistentFlags().StringVarP(&CfgFile, "config", "f", "./etc/cobra/config.yaml", "config file")
+	/* 自定义指令 */
+	RootCmd.PersistentFlags().StringVarP(&CfgFile, "root", "r", "./etc/cobra/config.yaml", "config file")
 }

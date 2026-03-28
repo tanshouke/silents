@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tanshouke/silents/01-config/viper/initialize"
+	"github.com/tanshouke/silents/01-config/viper-cobra/cmd"
 )
 
 func main() {
-	initialize.Execute()
-	httpStart()
+	cmd.Execute()
+	//httpStart()
 }
 
 /* 启动一个http服务，验证配置热加载 */
